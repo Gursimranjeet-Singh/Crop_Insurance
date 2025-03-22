@@ -1,0 +1,147 @@
+{
+	"compiler": {
+		"version": "0.8.29+commit.ab55807c"
+	},
+	"language": "Solidity",
+	"output": {
+		"abi": [
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "registrationAddress",
+						"type": "address"
+					}
+				],
+				"stateMutability": "nonpayable",
+				"type": "constructor"
+			},
+			{
+				"anonymous": false,
+				"inputs": [
+					{
+						"indexed": true,
+						"internalType": "address",
+						"name": "insurance_provider",
+						"type": "address"
+					},
+					{
+						"indexed": false,
+						"internalType": "uint256",
+						"name": "repScore",
+						"type": "uint256"
+					}
+				],
+				"name": "ReputationUpdated",
+				"type": "event"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "",
+						"type": "address"
+					}
+				],
+				"name": "InsuranceProviderRep",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "provider",
+						"type": "address"
+					}
+				],
+				"name": "addInsuranceProvider",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "insurance_provider",
+						"type": "address"
+					}
+				],
+				"name": "calculateRep",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "insurance_provider",
+						"type": "address"
+					},
+					{
+						"internalType": "bool",
+						"name": "transactionSuccessful",
+						"type": "bool"
+					}
+				],
+				"name": "feedback",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			}
+		],
+		"devdoc": {
+			"kind": "dev",
+			"methods": {},
+			"version": 1
+		},
+		"userdoc": {
+			"kind": "user",
+			"methods": {},
+			"version": 1
+		}
+	},
+	"settings": {
+		"compilationTarget": {
+			"contracts/reputation.sol": "Reputation"
+		},
+		"evmVersion": "cancun",
+		"libraries": {},
+		"metadata": {
+			"bytecodeHash": "ipfs"
+		},
+		"optimizer": {
+			"enabled": false,
+			"runs": 200
+		},
+		"remappings": []
+	},
+	"sources": {
+		"contracts/registration.sol": {
+			"keccak256": "0x4c419a190b28f4683656bcd2a09e01ede987d790996cb69ce195ce215dee1982",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://9b7b79cd23171648d73af08f53706e6661f422c20859282403c8e3aa8b554594",
+				"dweb:/ipfs/QmWoEzbEzZtoNJuXDJ7Pr6hx8d96QXYYbruxCS4LJC7Djg"
+			]
+		},
+		"contracts/reputation.sol": {
+			"keccak256": "0xe1f839c8fc640f05648814dd58cc988ec9c754f208d7b7d923704b5031ad3ab7",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://9327a804e62af7428a0a15cc815850bdac815064aed4868fa3fcb2f2a5f27b08",
+				"dweb:/ipfs/QmTSZ4FyWG8xXjDTD4N2TUPdgxDxmar6uNd3jcbXH7sfjp"
+			]
+		}
+	},
+	"version": 1
+}

@@ -1,0 +1,166 @@
+{
+	"compiler": {
+		"version": "0.8.29+commit.ab55807c"
+	},
+	"language": "Solidity",
+	"output": {
+		"abi": [
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "registrationAddress",
+						"type": "address"
+					},
+					{
+						"internalType": "address",
+						"name": "insuranceAddress",
+						"type": "address"
+					}
+				],
+				"stateMutability": "nonpayable",
+				"type": "constructor"
+			},
+			{
+				"anonymous": false,
+				"inputs": [
+					{
+						"indexed": false,
+						"internalType": "uint256",
+						"name": "policy_number",
+						"type": "uint256"
+					},
+					{
+						"indexed": false,
+						"internalType": "uint256",
+						"name": "index_level",
+						"type": "uint256"
+					}
+				],
+				"name": "WeatherUpdate",
+				"type": "event"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "uint256",
+						"name": "policy_number",
+						"type": "uint256"
+					}
+				],
+				"name": "IndexLevel",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "owner",
+				"outputs": [
+					{
+						"internalType": "address",
+						"name": "",
+						"type": "address"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "uint256",
+						"name": "policy_number",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "index_level",
+						"type": "uint256"
+					}
+				],
+				"name": "reportWeatherStatus",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					}
+				],
+				"name": "weather",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "index_level",
+						"type": "uint256"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			}
+		],
+		"devdoc": {
+			"kind": "dev",
+			"methods": {},
+			"version": 1
+		},
+		"userdoc": {
+			"kind": "user",
+			"methods": {},
+			"version": 1
+		}
+	},
+	"settings": {
+		"compilationTarget": {
+			"contracts/weatherVerification.sol": "WeatherVerification"
+		},
+		"evmVersion": "cancun",
+		"libraries": {},
+		"metadata": {
+			"bytecodeHash": "ipfs"
+		},
+		"optimizer": {
+			"enabled": false,
+			"runs": 200
+		},
+		"remappings": []
+	},
+	"sources": {
+		"contracts/insurancePolicy.sol": {
+			"keccak256": "0xa15b0e91d8efe7e9e9ac0aafa96d10190daad5d3833ee20ee929bb7ce7282531",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://2516092c172fe50dea09b6e9df6f4f145e7ac2334f17941002e2b3f0d859ff18",
+				"dweb:/ipfs/QmSQUmU6KHMXsrifGrRZv4BPW2s8rnEPJH2143TtFxrVfd"
+			]
+		},
+		"contracts/registration.sol": {
+			"keccak256": "0x4c419a190b28f4683656bcd2a09e01ede987d790996cb69ce195ce215dee1982",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://9b7b79cd23171648d73af08f53706e6661f422c20859282403c8e3aa8b554594",
+				"dweb:/ipfs/QmWoEzbEzZtoNJuXDJ7Pr6hx8d96QXYYbruxCS4LJC7Djg"
+			]
+		},
+		"contracts/weatherVerification.sol": {
+			"keccak256": "0x2c7bac1666da444fb92b402ea52f7fb846d2aea740172a94478f2a6828dccfa1",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://79ba4e2a805b3a4f1d0cf6477a7fb9fff8ed54624ef65790f3149e8a026e6822",
+				"dweb:/ipfs/QmVnkKvMaTPNVD97jYZYyw3Zcvehy3tTEb8mYEMpdS8NaT"
+			]
+		}
+	},
+	"version": 1
+}
