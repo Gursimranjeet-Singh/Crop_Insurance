@@ -1,35 +1,49 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faHeadset } from '@fortawesome/free-solid-svg-icons'
+import { faSquareWhatsapp } from '@fortawesome/free-brands-svg-icons'
 import './App.css'
 
 function App() {
-  const [count, setCount] = useState(0)
-
   return (
     <>
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
+      <header id="head1">
+        <div className="head11c">
+          <div id='head111'><FontAwesomeIcon icon={faSquareWhatsapp} id="head111font" /></div>
+          <div className="head12c">
+            Krishi Rakshak Portal helpline - <span className="head11span">7065514447</span>
+          </div>
+        </div>
+
+        <div className="head11c">
+          <FontAwesomeIcon icon={faHeadset} id="head12font" />
+          <div className="head12c">
+            Krishi Rakshak Portal helpline - <span className="head11span">14447</span>
+          </div>
+        </div>
+      </header>
+      <header id="head2">
+        <div id='lang'>logo+text+laguage</div>
+        <div id='sticker'>sticker</div>
+        <div id='navbar'>navbar</div>
+      </header>
+      <div id='carddiv'>
+      
       </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
+      <div id='lnk'>
+
       </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
+      <div id='hyplnk'></div>
+
+      <footer id='foot'>
+        <div id='footnav'>
+        </div>
+        <div id='joinpcopy'>
+          <div id='join'></div>
+          <div id='copy'></div>
+        </div>
+      </footer>
     </>
   )
-}
+}5.08
 
 export default App
