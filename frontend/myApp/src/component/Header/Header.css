@@ -1,0 +1,116 @@
+#head1 {
+    position: relative;
+    top: 0;
+    width: 100%;
+    /* height: 7%; */
+
+    background-color: black;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+}
+
+.head11c {
+    display: flex;
+    align-items: center;
+    font-weight: 500;
+}
+
+#head111 {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    background: white;
+    margin-right: 0.8rem;
+    height: 1.6rem;
+    width: 1.6rem;
+}
+
+#head111font {
+    color: #25D366;
+    font-size: 1.6rem;
+    height: 120%;
+    width: 120%;
+
+}
+
+#head12font {
+    font-size: 1.6rem;
+    color: white;
+    font-weight: bold;
+    margin-right: 0.8rem;
+}
+
+.head12c {
+    color: white;
+    font-size: 1.2rem;
+    margin-bottom: 0.32rem;
+    margin-top: 0.32rem;
+}
+
+.head11span {
+    color: rgb(126, 211, 33);
+    font-weight: bold;
+    font-size: 1.92rem;
+}
+
+
+#head2 {
+    background-image: url(https://pmfby.amnex.co.in/pmfby/public/img/CIBack.png);
+    background-size: cover;
+}
+
+#lang {
+    position: relative;
+    border: 2px solid red;
+    height: 6.4rem;
+    padding-left: 20rem;
+    padding-right: 20rem;
+    display: flex;
+    color: white;
+    font-weight: 400;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 1.2rem;
+}
+
+#lang button {
+    background-color: transparent;
+    padding: 0rem 0.7rem;
+    transition: none;
+}
+
+#sticker {
+    position: relative;
+    border: 2px solid white;
+    height: 7.2rem;
+}
+
+
+#navbar {
+    position: relative;
+    height: 4.3rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: linear-gradient(to right, #21481f, #1f7218, #21481f);
+}
+
+#navbar div {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-width: 85px;
+    border-bottom: 2px solid transparent;
+    border: 2px solid rgb(2, 79, 2);
+    height: 100%;
+}
+
+#navbar div a {
+    font-family: 'Open Sans', sans-serif;
+    font-size: 1.2rem;
+    font-weight: 400;
+    color: #b8e986;
+    text-decoration: none;
+}

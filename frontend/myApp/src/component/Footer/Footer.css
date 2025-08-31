@@ -1,0 +1,68 @@
+#foot {
+  position: relative;
+  height: 12.48rem;
+
+}
+
+#footnav {
+  position: relative;
+  border: 2px solid green;
+  height: 5.08rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+#footnav a{
+  font-size: 1.3rem;
+  font-weight: 500;
+  color: #000;
+  text-decoration: none;
+  margin:0 1rem 0 1rem;
+}
+#footnav a:hover{
+  text-decoration: underline;
+}
+#footnav a:active{
+  color:#7ed321;
+}
+
+#joinpcopy {
+  position: relative;
+  border: 2px solid green;
+  height: 7.40rem;
+  background-image: url(https://pmfby.amnex.co.in/pmfby/public/img/CIBack.png);
+  background-size: cover;
+}
+
+
+
+#copy {
+  margin-bottom: 1.3rem;
+  position: relative;
+  height: 2.4rem;
+  text-align: center;
+  align-content: center;
+  color: rgb(184, 233, 134);
+  font-size:1.2rem;
+}
+
+
+#join {
+  margin-top: 1.3rem;
+  position: relative;
+  height: 2.4rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 1.2rem;
+  color:white;
+}
+
+#join a{
+  font-size: 1.3rem;
+  font-weight: 500;
+  color: white;
+  text-decoration: underline;
+  margin:0 1rem 0 1rem;
+  
+}
