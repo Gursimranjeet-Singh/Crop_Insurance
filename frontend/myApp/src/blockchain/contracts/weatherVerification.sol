@@ -1,5 +1,5 @@
 // SPDX-License-Identifier: MIT
-pragma solidity ^0.8.29;
+pragma solidity =0.8.30;
 
 import "./registration.sol";
 import "./insurancePolicy.sol";
@@ -24,7 +24,7 @@ contract WeatherVerification {
     }
 
     modifier onlyWeatherProvider() {
-        require(registrationContract.WeatherProviderExists(msg.sender), "Sender not authorized.");
+        require(registrationContract.weatherProviderExists(msg.sender), "Sender not authorized.");
         _;
     }
 

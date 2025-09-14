@@ -1,0 +1,72 @@
+#carddiv {
+  position: relative;
+  border: 2px solid red;
+  height: 50rem;
+  background: #075907 url(https://pmfby.amnex.co.in/pmfby/public/img/CIBack.png);
+  background-size: cover;
+  background-position: 100% 100%;
+  display:flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.cardh{
+    border:2px solid red;
+        border-top-left-radius: 8px;
+    border-top-right-radius: 8px;
+    background-size: cover;
+    text-align: center;
+    width:17.4rem;
+    height:19.6rem;
+}
+.cardf{
+        border-bottom-left-radius: 8px;
+    border-bottom-right-radius: 8px;
+    background: white;
+}
+
+#lnk {
+  position: relative;
+  border: 2px solid blue;
+  height: 57.56rem;
+  background: url(https://pmfby.amnex.co.in/pmfby/public/img/newHome/otherLinksBack2.png), #fff url(https://pmfby.amnex.co.in/pmfby/public/img/newHome/otherLinksBack1.png);
+  background-repeat: no-repeat;
+  background-position: 0, 100%;
+}
+
+#hyplnk {
+  position: relative;
+  border: 2px solid red;
+  height: 40.2rem;
+  background: #e1fad0 url(https://pmfby.amnex.co.in/pmfby/public/img/newHome/whatNewBack.png);
+  background-size: cover;
+  color:#233e5e;
+  padding-top:5rem;
+  padding-left:25%;
+  letter-spacing: normal;
+  
+}
+#hyplnk h2{
+    font-size: 3rem;
+    font-weight: 500;
+    text-decoration: 1px solid underline;
+    text-underline-offset: 1rem; 
+}
+
+#hyplnk a{
+    padding-left: 2rem;
+    padding-top:1rem;
+    font-size: 1.5rem;
+    font-weight: 500;
+    display:block;
+    text-decoration: none;
+    color:#233e5e;
+}
+#hyplnk a:hover{
+    text-decoration: underline;
+}
+
+
+
+
+

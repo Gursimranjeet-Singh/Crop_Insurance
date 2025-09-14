@@ -1,0 +1,207 @@
+[
+	{
+		"inputs": [
+			{
+				"internalType": "address",
+				"name": "registrationAddress",
+				"type": "address"
+			}
+		],
+		"stateMutability": "nonpayable",
+		"type": "constructor"
+	},
+	{
+		"anonymous": false,
+		"inputs": [
+			{
+				"indexed": false,
+				"internalType": "string",
+				"name": "message",
+				"type": "string"
+			},
+			{
+				"indexed": false,
+				"internalType": "uint256",
+				"name": "policy_number",
+				"type": "uint256"
+			},
+			{
+				"indexed": false,
+				"internalType": "uint256",
+				"name": "premium",
+				"type": "uint256"
+			}
+		],
+		"name": "InsuranceAgreed",
+		"type": "event"
+	},
+	{
+		"anonymous": false,
+		"inputs": [
+			{
+				"indexed": false,
+				"internalType": "uint256",
+				"name": "policy_number",
+				"type": "uint256"
+			},
+			{
+				"indexed": false,
+				"internalType": "uint256",
+				"name": "insurance_premium",
+				"type": "uint256"
+			},
+			{
+				"indexed": false,
+				"internalType": "uint256",
+				"name": "insurance_period",
+				"type": "uint256"
+			},
+			{
+				"indexed": false,
+				"internalType": "uint256",
+				"name": "agreed_payout_amount",
+				"type": "uint256"
+			},
+			{
+				"indexed": false,
+				"internalType": "uint256",
+				"name": "agreed_index_level",
+				"type": "uint256"
+			}
+		],
+		"name": "NewInsurancePolicyAdded",
+		"type": "event"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "uint256",
+				"name": "policy_number",
+				"type": "uint256"
+			}
+		],
+		"name": "AgreedIndexLevel",
+		"outputs": [
+			{
+				"internalType": "uint256",
+				"name": "",
+				"type": "uint256"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "uint256",
+				"name": "policy_number",
+				"type": "uint256"
+			}
+		],
+		"name": "InsurancePayOut",
+		"outputs": [
+			{
+				"internalType": "uint256",
+				"name": "",
+				"type": "uint256"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "uint256",
+				"name": "policy_number",
+				"type": "uint256"
+			}
+		],
+		"name": "InsurancePeriod",
+		"outputs": [
+			{
+				"internalType": "uint256",
+				"name": "",
+				"type": "uint256"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "uint256",
+				"name": "policy_number",
+				"type": "uint256"
+			},
+			{
+				"internalType": "uint256",
+				"name": "insurance_premium",
+				"type": "uint256"
+			},
+			{
+				"internalType": "uint256",
+				"name": "insurance_period",
+				"type": "uint256"
+			},
+			{
+				"internalType": "uint256",
+				"name": "agreed_payout_amount",
+				"type": "uint256"
+			},
+			{
+				"internalType": "uint256",
+				"name": "agreed_index_level",
+				"type": "uint256"
+			}
+		],
+		"name": "addInsurancePolicy",
+		"outputs": [],
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "address",
+				"name": "desired_address",
+				"type": "address"
+			}
+		],
+		"name": "getBalance",
+		"outputs": [
+			{
+				"internalType": "uint256",
+				"name": "",
+				"type": "uint256"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "bool",
+				"name": "farmerDecision",
+				"type": "bool"
+			},
+			{
+				"internalType": "uint256",
+				"name": "policy_number",
+				"type": "uint256"
+			},
+			{
+				"internalType": "address payable",
+				"name": "insurance_provider",
+				"type": "address"
+			}
+		],
+		"name": "payInsurancePremium",
+		"outputs": [],
+		"stateMutability": "payable",
+		"type": "function"
+	}
+]

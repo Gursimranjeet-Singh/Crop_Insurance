@@ -1,5 +1,5 @@
 // SPDX-License-Identifier: MIT
-pragma solidity ^0.8.29;
+pragma solidity =0.8.30;
 
 import "./registration.sol";
 
@@ -17,7 +17,7 @@ contract Reputation {
     }
 
     modifier onlyFarmer() {
-        require(registrationContract.FarmerExists(msg.sender), "Sender not authorized.");
+        require(registrationContract.farmerExists(msg.sender), "Sender not authorized.");
         _;
     }
 
@@ -33,24 +33,24 @@ contract Reputation {
         owner = msg.sender;
     }
 
-    function addInsuranceProvider(address provider) public onlyOwner {
+    function addInsuranceProvider(address provider) public {
         require(InsuranceProviderRep[provider] == 0, "Insurance provider already added");
         InsuranceProviderRep[provider] = 80; 
     }
 
-    function feedback(address insurance_provider, bool transactionSuccessful) public onlyFarmer {
+    function feedback(address insurance_provider, bool transactionSuccessful) external onlyFarmer {
         require(!FarmerFeedback[msg.sender].insurance_providers[insurance_provider], 
                 "Farmer has already provided feedback for this provider");
-        require(registrationContract.InsuranceProviderExists(insurance_provider), 
+        require(registrationContract.insuranceProviderExists(insurance_provider), 
                 "Invalid insurance provider address");
 
         FarmerFeedback[msg.sender].insurance_providers[insurance_provider] = true;
         FarmerFeedback[msg.sender].status[insurance_provider] = transactionSuccessful;
+
+        calculateRep(insurance_provider);
     }
 
-    function calculateRep(address insurance_provider) external {
-        require(FarmerFeedback[msg.sender].insurance_providers[insurance_provider], 
-                "No feedback provided by this farmer");
+    function calculateRep(address insurance_provider) private {
 
         uint cr;
         if (FarmerFeedback[msg.sender].status[insurance_provider]) {

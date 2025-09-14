@@ -14,29 +14,3 @@ body {
   place-items: unset;
 }
 
-#carddiv {
-  position: relative;
-  border: 2px solid red;
-  height: 50rem;
-  background: #075907 url(https://pmfby.amnex.co.in/pmfby/public/img/CIBack.png);
-  background-size: cover;
-  background-position: 100% 100%;
-}
-
-#lnk {
-  position: relative;
-  border: 2px solid blue;
-  height: 57.56rem;
-  background: url(https://pmfby.amnex.co.in/pmfby/public/img/newHome/otherLinksBack2.png), #fff url(https://pmfby.amnex.co.in/pmfby/public/img/newHome/otherLinksBack1.png);
-  background-repeat: no-repeat;
-  background-position: 0, 100%;
-}
-
-#hyplnk {
-  position: relative;
-  border: 2px solid red;
-  height: 40.2rem;
-  background: #e1fad0 url(https://pmfby.amnex.co.in/pmfby/public/img/newHome/whatNewBack.png);
-  background-size: cover;
-}
-
