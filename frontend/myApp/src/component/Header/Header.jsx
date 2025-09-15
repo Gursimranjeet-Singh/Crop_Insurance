@@ -1,3 +1,4 @@
+import { useState } from 'react'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faHeadset } from '@fortawesome/free-solid-svg-icons'
 import { faSquareWhatsapp } from '@fortawesome/free-brands-svg-icons'
@@ -5,6 +6,23 @@ import './Header.css'
 
 
 const Header = () => {
+    const [fontSize, setFontSize] = useState(10);
+
+    function increaseFontSize() {
+        const newSize = fontSize + 1;
+        setFontSize(newSize);
+        document.documentElement.style.fontSize = newSize + "px";
+    }
+    function decreaseFontSize() {
+        const newSize = fontSize - 1 > 2 ? fontSize - 1 : 2;
+        setFontSize(newSize);
+        document.documentElement.style.fontSize = newSize + "px";
+    }
+    function defaultFontSize() {
+        setFontSize(10);
+        document.documentElement.style.fontSize = 10 + "px";
+
+    }
     return (
         <>
             <header id="head1">
@@ -24,17 +42,36 @@ const Header = () => {
             </header>
             <header id="head2">
                 <div id='lang'>
-                    <div>logo</div>
-                    <div>Text Size <button>A-</button><button>A</button><button>A+</button></div>
-                    <div>Change Language : </div>
+                    <div id='langcontent'>
+                        <div><div>ਖੇਤੀ ਹੱਲ</div><div>KRISHI SOLUTIONS</div></div>
+                        <div id='verticalruler'></div>
+                        <div><div>ਸਮਾਰਟ ਖੇਤੀ ਲਈ ਡਿਜ਼ਿਟਲ ਪਲੇਟਫ਼ਾਰਮ</div><div>A DIGITAL PLATFORM FOR SMART FARMING</div></div>
+                    </div>
+                    <div id='textsize'>Text Size <button onClick={increaseFontSize}>A+</button><button onClick={decreaseFontSize}>A-</button><button onClick={defaultFontSize}>A</button></div>
+                    {/* <div>Change Language : </div> */}
                 </div>
-                <div id='sticker'>sticker</div>
+                <div id='sticker'>
+                    <div id="whiteboxsticker">
+                        <div id="logosticker"></div>
+                        <div id='verticalrulersticker'></div>
+                        <div id='textsticker'>
+                            <div id='head1textsticker'>Gursimranjeet Fasal Bima Yojana</div>
+                            <div id='head2textsticker'>Farmer Welfare</div>
+                        </div>
+                        <div id="logandsign">
+                            <button id='sign'>Sign in</button>
+                            <button id='register'>Register</button>
+                        </div>
+                    </div>
+
+                </div>
+
                 <div id='navbar'>
                     <div><a>Home</a></div>
                     <div><a>Related Links</a></div>
                     <div><a>Reports</a></div>
                     <div><a>Contact Us</a></div>
-                 
+
                 </div>
             </header>
         </>

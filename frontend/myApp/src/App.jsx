@@ -2,23 +2,21 @@ import Header from './component/Header/Header'
 import Footer from './component/Footer/Footer'
 import Main from './component/Main/Main'
 
-import {connectWallet} from './conf/Wallet/walletConfig'
+import { connectWallet } from './conf/Wallet/walletConfig'
 
 
 import './App.css'
 import { useEffect } from 'react'
-connectWallet();
-
 
 function App() {
-return (
-  <>
+  return (
+    <>
 
-    {/* <Header/>
-      <Main/>
-      <Footer/> */}
-  </>
-)
+      <Header />
+      <Main />
+      <Footer />
+    </>
+  )
 };
 
 export default App

@@ -73,6 +73,7 @@
     justify-content: space-between;
     align-items: center;
     font-size: 1.2rem;
+    background: #077907 url(https://pmfby.amnex.co.in/pmfby/public/img/CIBack.png);
 }
 
 #lang button {
@@ -81,12 +82,103 @@
     transition: none;
 }
 
+#langcontent {
+    display: flex;
+}
+
+#verticalruler {
+    width: 2px;
+    background-color: white;
+    margin-left: 1rem;
+    margin-right:1rem;
+  
+}
+
+#textsize{
+    font-size: 1.4rem;
+}
+
 #sticker {
     position: relative;
     border: 2px solid white;
     height: 7.2rem;
+    background: #077907 url(https://pmfby.amnex.co.in/pmfby/public/img/CIBack.png);
+    margin: auto;
 }
 
+#verticalrulersticker{
+    width: 2px;
+    background-color: black;
+    margin-left: 1rem;
+    margin-right:1rem;
+}
+
+#whiteboxsticker {
+    background-color: white;
+    display: flex;
+    height: 100%;
+    width: 70%;
+    margin: 0 auto;
+}
+
+#logosticker {
+    margin-left:1rem;
+    width: 7%;
+    background-image: url("https://pmfby.amnex.co.in/pmfby/public/img/logo-product.svg");
+    background-repeat: no-repeat;
+    background-size: contain;
+
+}
+
+#textsticker {
+    display: flex;
+    flex-direction: column;
+    width: 30%;
+    color: black;
+    justify-content: center;
+    font-weight: 600;
+}
+
+#head1textsticker {
+    font-size: 2rem;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+#head2textsticker {
+    font-size: 1.7rem;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+#logandsign {
+    width: 30%;
+    margin: 0 0 0 auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#logandsign button {
+    color: black;
+    font-size: 1.2rem;
+    border-color: #6dc420;
+
+}
+
+#sign {
+    border-top-left-radius: 0.6rem;
+    border-bottom-left-radius: 0.6rem;
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0;
+    background-color: white;
+}
+
+#register {
+    border-top-left-radius: 0rem;
+    border-bottom-left-radius: 0rem;
+    border-top-right-radius: 0.6rem;
+    border-bottom-right-radius: 0.6rem;
+    background-color: #5ccf5c;
+}
 
 #navbar {
     position: relative;
