@@ -63,7 +63,6 @@
 
 #lang {
     position: relative;
-    border: 2px solid red;
     height: 6.4rem;
     padding-left: 20rem;
     padding-right: 20rem;
@@ -100,7 +99,6 @@
 
 #sticker {
     position: relative;
-    border: 2px solid white;
     height: 7.2rem;
     background: #077907 url(https://pmfby.amnex.co.in/pmfby/public/img/CIBack.png);
     margin: auto;
@@ -205,4 +203,5 @@
     font-weight: 400;
     color: #b8e986;
     text-decoration: none;
+    cursor:pointer;
 }

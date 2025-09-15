@@ -59,8 +59,8 @@ const Header = () => {
                             <div id='head2textsticker'>Farmer Welfare</div>
                         </div>
                         <div id="logandsign">
-                            <button id='sign'>Sign in</button>
-                            <button id='register'>Register</button>
+                            <button onClick={} id='sign'>Sign in</button>
+                            <button onClick={} id='register'>Register</button>
                         </div>
                     </div>
 

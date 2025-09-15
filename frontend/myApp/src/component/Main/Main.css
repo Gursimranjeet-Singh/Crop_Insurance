@@ -1,6 +1,5 @@
 #carddiv {
   position: relative;
-  border: 2px solid red;
   height: 50rem;
   background: #075907 url(https://pmfby.amnex.co.in/pmfby/public/img/CIBack.png);
   background-size: cover;
@@ -12,7 +11,6 @@
 
 .cardh {
   display: block;
-  border: 2px solid red;
   border-top-left-radius: 8px;
   border-top-right-radius: 8px;
   background-size: cover;
@@ -56,6 +54,12 @@
   font-size: 1.7rem;
   color: black;
   cursor: grab;
+  border:none;
+}
+
+#cardhbtn{
+  border:none;
+  outline:none;
 }
 
 .cardf:hover {
@@ -64,7 +68,6 @@
 
 #lnk {
   position: relative;
-  border: 2px solid blue;
   height: 57.56rem;
   background: url(https://pmfby.amnex.co.in/pmfby/public/img/newHome/otherLinksBack2.png), #fff url(https://pmfby.amnex.co.in/pmfby/public/img/newHome/otherLinksBack1.png);
   background-repeat: no-repeat;
@@ -75,9 +78,9 @@
   flex-direction: column;
 }
 
-.lnkupperdiv{
-  display:flex;
-  margin-top:2rem;
+.lnkupperdiv {
+  display: flex;
+  margin-top: 2rem;
 }
 
 
@@ -95,26 +98,29 @@
   color: black;
 }
 
-.lnkcardh:hover{
+.lnkcardh:hover {
   background-color: #deffbd;
+  cursor:pointer;
 }
 
-.lnkcardh img{
-  margin-top:2rem;
-}
-.lnkcardhdiv1{
-  margin-top:1rem;
-  color:#2c4b09;
+.lnkcardh img {
+  margin-top: 2rem;
 }
 
-.lnkcardhdiv2{
-  margin-top:1rem;
-  color:black;
+.lnkcardhdiv1 {
+  margin-top: 1rem;
+  color: #2c4b09;
+}
+
+.lnkcardhdiv2 {
+  margin-top: 1rem;
+  color: black;
   text-decoration: underline;
 }
-.lnkcardhdiv2:hover{
-  color:black;
-  cursor:pointer;
+
+.lnkcardhdiv2:hover {
+  color: black;
+  cursor: pointer;
 }
 
 
@@ -122,7 +128,6 @@
 
 #hyplnk {
   position: relative;
-  border: 2px solid red;
   height: 40.2rem;
   background: #e1fad0 url(https://pmfby.amnex.co.in/pmfby/public/img/newHome/whatNewBack.png);
   background-size: cover;

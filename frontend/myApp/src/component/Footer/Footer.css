@@ -6,7 +6,6 @@
 
 #footnav {
   position: relative;
-  border: 2px solid green;
   height: 5.08rem;
   display: flex;
   align-items: center;
@@ -28,7 +27,6 @@
 
 #joinpcopy {
   position: relative;
-  border: 2px solid green;
   height: 7.40rem;
   background-image: url(https://pmfby.amnex.co.in/pmfby/public/img/CIBack.png);
   background-size: cover;
