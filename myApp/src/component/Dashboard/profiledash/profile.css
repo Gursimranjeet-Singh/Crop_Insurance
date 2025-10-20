@@ -1,0 +1,47 @@
+#headingprofile {
+    color: #005fa7;
+    font-family: UberMove, UberMoveText, system-ui, "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-weight: 700;
+    font-size: 36px;
+    line-height: 44px;
+    margin-top: 3rem;
+    margin-bottom: 2rem;
+    margin-Left: 10rem;
+    text-decoration: underline;
+}
+
+#profileimage {
+    border-radius: 50%;
+    box-sizing: border-box;
+    display: block;
+    height: 96px;
+    width: 96px;
+    background-image: url("../../../public/defaultprofile.jpg");
+    background-size: cover;
+    margin-bottom: 2rem;
+    border: 3px solid#000000;
+    margin-Left: 10rem;
+}
+
+#info {
+    color: #005fa7;
+    margin-left: 10rem;
+    ;
+}
+
+.infodiv{
+    margin-top:2rem;
+}
+
+.infodivhead {
+    color:black;
+    font-weight: 700;
+    font-size: 1.8rem;
+}
+
+.infodivval {
+    font-size: 2rem;
+    text-decoration: underline;
+    text-underline-offset: 4px;
+}
+

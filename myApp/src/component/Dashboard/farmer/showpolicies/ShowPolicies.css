@@ -1,0 +1,60 @@
+
+#searchpolicy{
+    color:black;
+    font-size: 2rem;
+}
+
+
+#showpolicyh1 {
+    color: black;
+    
+}
+#searchpolicy input{
+    width:10vw;
+    margin-right: 2rem;
+    background-color: white;
+    padding:1rem;
+    color: black;
+    font-size: 1.5rem;
+}
+#searchpolicy select{
+    margin-right: 2rem;
+    width:10vw;
+    background-color: white;
+    padding:1rem;
+}
+
+#policy-container{
+    margin-bottom: 2rem;
+}
+.policyband {
+    color: black;
+    display: flex;
+    width: 50vw;
+    font-size: 1.8rem;
+    box-shadow: 0 2px 5px #ccc;
+}
+
+.policyband div {
+    width: 50%;
+}
+
+.policyband:nth-child(even) {
+    background-color: rgb(209, 202, 202);
+}
+
+
+#showbtn{
+  
+  border: none;
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  border-radius: 5px;
+  background-color: #095484;
+  font-size: 16px;
+  color: #fff;
+  cursor: pointer;
+}
+#showbtn:hover {
+  background-color: #0666a3;
+}

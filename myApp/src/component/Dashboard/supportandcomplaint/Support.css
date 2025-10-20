@@ -1,0 +1,170 @@
+body{
+    font-family: garamond;
+}
+
+#supporth1 {
+  font-size: 4rem;
+  font-weight: 700;
+  color: #005fa7;
+}
+#supportp{
+    font-size: 2rem;
+    color:#745b5b;
+}
+#supporth4 {
+    font-size: 2rem;
+    color:black;
+  margin-bottom: 4px;
+}
+#iconsupport{
+   margin-left: auto;
+}
+.testbox {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 3px;
+}
+#supportform {
+  padding: 20px;
+  background: #fff;
+}
+#supportform input,
+#supportform select,
+#supportform textarea {
+  width: 100%;
+  margin-bottom: 10px;
+  border: 1px solid #ccc;
+  border-radius: 3px;
+}
+#supportform input {
+  background-color: white;
+  width: calc(100% - 10px);
+  padding: 5px;
+  font-size: 2rem;
+  color:black;
+}
+#supportform input:hover,
+#supportform textarea:hover,
+#supportform select:hover {
+  outline: none;
+  border: 1px solid #095484;
+}
+#supportform select {
+  padding: 7px 0;
+  background: transparent;
+}
+#supportform textarea {
+  background-color: white;  
+  margin-bottom: 3px;
+  font-size: 2rem;
+}
+.item {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  margin: 10px 0;
+}
+#supportform input[type="date"]::-webkit-inner-spin-button {
+  display: none;
+}
+.item i,
+input[type="date"]::-webkit-calendar-picker-indicator {
+  position: absolute;
+  font-size: 20px;
+  color: #a9a9a9;
+}
+.item i {
+  left: 94%;
+  top: 30px;
+  z-index: 1;
+}
+[type="date"]::-webkit-calendar-picker-indicator {
+  left: 93%;
+  z-index: 2;
+  opacity: 0;
+  cursor: pointer;
+}
+.street,
+.desired-outcome-item,
+.complaint-details-item{
+  display: flex;
+  flex-wrap: wrap;
+}
+.street input {
+  margin-bottom: 10px;
+}
+.small {
+  display: block;
+  line-height: 16px;
+  opacity: 0.7;
+  font-size: 2rem;
+}
+.btn-block {
+  margin-top: 20px;
+  text-align: center;
+}
+#supportform button {
+  
+  border: none;
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  border-radius: 5px;
+  background-color: #095484;
+  font-size: 16px;
+  color: #fff;
+  cursor: pointer;
+}
+#supportform button:hover {
+  background-color: #0666a3;
+}
+@media (min-width: 568px) {
+  /* input {
+    width: calc(35% - 20px);
+    margin: 0 0 0 8px;
+  } */
+  select {
+    width: calc(50% - 8px);
+    margin: 0 0 10px 8px;
+  }
+  .item {
+    flex-direction: row;
+    align-items: center;
+  }
+  .item p {
+    color:black;
+    font-size: 2rem;
+    width:25%;
+  }
+  .item i {
+    left: 61%;
+    top: 25%;
+  }
+  [type="date"]::-webkit-calendar-picker-indicator {
+    left: 60%;
+  }
+  .street,
+  .desired-outcome-item,
+  .complaint-details-item {
+    width: 70%;
+  }
+  .street input {
+    width: calc(50% - 20px);
+  }
+  .street .street-item {
+    width: 100%;
+  }
+  .address p,
+  .desired-outcome p,
+  .complaint-details p {
+    align-self: flex-start;
+    margin-top: 6px;
+  }
+  .desired-outcome-item,
+  .complaint-details-item {
+    margin-left: 12px;
+  }
+  textarea {
+    width: calc(100% - 6px);
+  }
+}

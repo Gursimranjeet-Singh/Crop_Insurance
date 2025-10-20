@@ -1,0 +1,43 @@
+#maincontent {
+    display: flex;
+    width: 100vw;
+}
+
+#leftnavdash {
+    width: 19.5vw;
+    height:100vh
+
+}
+
+.divleftdash {
+    width: 100%;
+    color: black;
+    font-size: 1.6rem;
+    font-family: UberMoveText, system-ui, "Helvetica Neue", Helvetica, Arial, sans-serif;
+    background-color: white;
+    padding-top: 12px;
+    padding-bottom: 12px;
+    padding-left: calc(24px * 1);
+    padding-right: 12px;
+    border: none;
+    text-align: left;
+    border-radius: 1rem;
+}
+
+.divleftdash:focus,
+.divleftdash:hover {
+    border-left: 5px solid #005fa7;
+    background-image: linear-gradient(0deg, rgba(255, 255, 255, 0.92), rgba(255, 255, 255, 0.92));
+    background-color: #005fa7;
+    /* both background color and image are giving that texture combined */
+
+
+}
+
+#rightcontentdash {
+    width: calc(100vw - 19.5vw);
+    padding-left: 2rem;
+    height:100vh;
+    overflow-y: scroll;
+    box-shadow: 0 2px 5px #ccc;
+}
