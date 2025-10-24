@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import { Link, Navigate, useNavigate } from "react-router-dom";
 
+import {registerUser} from "../../conf/Contract/register/register"
+
 import supabase from "../../conf/db/connect";
 
 import "./Form.css";
@@ -47,6 +49,7 @@ export default function Form() {
     console.log("Wallet address:", walletAddress);
 
 
+
     const { error } = await supabase
       .from("users")
       .insert({
@@ -58,10 +61,17 @@ export default function Form() {
         dob: data.dob,
         type: data.accountType,
       });
+ 
+      if(data.accountType=="Farmer"){
+        await registerUser(1);
+      }else{
+        await registerUser(2);
+      }
 
     if (error) {
       console.error("Supabase error:", error);
     } else {
+      
       navigate('/dashboard');
     }
   }
@@ -76,6 +86,7 @@ export default function Form() {
           <div className="item">
             <p>Customer Type</p>
             <select
+              id="custtype"
               className="selectinput"
               name="accountType"
               onChange={handleTypeChange}

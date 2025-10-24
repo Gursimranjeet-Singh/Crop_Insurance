@@ -1,9 +1,10 @@
-//manual deployment
 import { ethers } from "ethers";
-import {deployContractInsurancePolicy} from "../insurancePolicy/insurancePolicy"
-import {addInsuranceProvider} from "../reputation/reputation"
-import contractABI from "./abi.json";
-const contractAddress = "";
+import contractABI from "./abi.json"; 
+
+// import { deployContractInsurancePolicy } from "../insurancePolicy/insurancePolicy";
+// import { addInsuranceProvider } from "../reputation/reputation";
+
+const contractAddress = "0x1CC9c5609D0abF5D452972e526389f44aaD39f56";
 
 export async function getContract() {
 	if (!window.ethereum) {
@@ -12,32 +13,21 @@ export async function getContract() {
 
 	const provider = new ethers.BrowserProvider(window.ethereum);
 	const signer = await provider.getSigner();
-
 	const signerAddress = await signer.getAddress();
 
 	const contract = new ethers.Contract(contractAddress, contractABI, signer);
 
-	return { contract, signerAddress };
+	return contract;
 }
 
 export async function registerUser(type) {
 	try {
-		const { contract,signerAddress } = await getContract();
-		// console.log("Contract loaded:", contract.target);
-
+		const contract = await getContract();
 		const tx = await contract.registerUser(type);
 		const receipt = await tx.wait();
 
-		// console.log("Transaction mined in block:", receipt);
-
-		if (type == 2) {
-			deployContractInsurancePolicy(contractAddress);
-			addInsuranceProvider(signerAddress);
-		}
-
+		console.log("Transaction mined:", receipt);
 	} catch (err) {
 		console.error("Error in registerUser:", err);
 	}
 }
-
-

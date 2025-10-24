@@ -1,30 +1,24 @@
 import React, { useState } from "react";
+
+import { getPoliciesForInsuranceProvider } from "../../../../conf/Contract/insurancePolicy/insurancePolicy";
+
 import "./ShowPolicy.css";
 
-const tempdata = {
-  id:"1",
-  areaname: "Ambala",
-  areanametype: "city",
-  dateofcreation: "1212-12-12",
-  indexlevel: "120",
-  indexleveltype: "subdistrict",
-  nameofpolicy: "Gursimranjeet Policy",
-  paymentamt: "20",
-  paymentamttype: "1000",
-  policydurationdays: "0",
-  policyofdurationmonth: "12",
-  premiumamt: "1",
-  premiumamttype: "100000",
-  premiumpaymentdays: "-1",
-  premiumpaymentmonth: "1"
-};
-
 export default function ShowPolicy() {
-    const [policydata, setPolicyData] = useState([tempdata]);
+    const [policydata, setPolicyData] = useState([]);
 
-    function handleClick(){
-        //get data from blockchain
+    async function handleClick() {
+        const data = await getPoliciesForInsuranceProvider();
+        const safeJSON = JSON.stringify(data, (key, value) =>
+            typeof value === 'bigint' ? value.toString() : value
+        );
+        const parsedData = JSON.parse(safeJSON);
+
+        console.log(parsedData);
+
+        setPolicyData(parsedData)
     }
+
     return (
         <>
             <h1 id="showpolicyh1">My Policies</h1>
@@ -33,28 +27,36 @@ export default function ShowPolicy() {
 
             {policydata.map((p, index) => (
                 <div key={index} id="policy-container">
-                    <div className="policyband"><div>UID</div><div>{p.id}</div></div>
-                    <div className="policyband"><div>Name of Policy</div><div>{p.nameofpolicy}</div></div>
-                    <div className="policyband"><div>Date of Creation</div><div>{p.dateofcreation}</div></div>
+                    <div className="policyband"><div>UID</div><div>{p[0]}</div></div>
+                    <div className="policyband"><div>Name of Policy</div><div>{p[1][1]}</div></div>
+                    <div className="policyband"><div>Date of Creation</div><div>{new Date(Number(p[1][0])).toLocaleString()}</div></div>
                     <div className="policyband">
                         <div>Policy Duration</div>
-                        <div>{`${p.policyofdurationmonth} Months ${p.policydurationdays} Days`}</div>
+                        <div>{`${p[2][0]} Months ${p[2][1]} Days`}</div>
+                    </div>
+                    <div className="policyband">
+                        <div>Premium Duration</div>
+                        <div>{`${p[2][2]} Months ${p[2][3]} Days`}</div>
                     </div>
                     <div className="policyband">
                         <div>Premium Amount Set</div>
-                        <div>{`${p.premiumamt} ${p.premiumamttype}`}</div>
+                        <div>{p[3][0]}</div>
                     </div>
                     <div className="policyband">
                         <div>Payout Amount Set</div>
-                        <div>{`${p.paymentamt} ${p.paymentamttype}`}</div>
+                        <div>{p[3][1]}</div>
                     </div>
                     <div className="policyband">
                         <div>Area</div>
-                        <div>{`${p.areaname} ${p.areanametype}`}</div>
+                        <div>{`${p[4][0]} ${p[4][1]}`}</div>
                     </div>
                     <div className="policyband">
                         <div>Index level Set</div>
-                        <div>{`${p.indexlevel} ${p.indexleveltype}`}</div>
+                        <div>{p[5][0]}</div>
+                    </div>
+                    <div className="policyband">
+                        <div>Index Type</div>
+                        <div>{p[5][1]}</div>
                     </div>
                 </div>
             ))}

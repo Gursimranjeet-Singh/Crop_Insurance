@@ -60,18 +60,29 @@ export default function Dashboard() {
           <Link to="/dashboard/accountprofile">
             <button className="divleftdash">Account Information</button>
           </Link>
-          <Link to="/dashboard/showpolicyfarmer">
-            <button className="divleftdash">Show Policies (Farmer)</button>
-          </Link>
-          <Link to="/dashboard/showpolicyprovider">
-            <button className="divleftdash">Show Policies (Provider)</button>
-          </Link>
-          <Link to="/dashboard/mypolicyfarmer">
-            <button className="divleftdash">My Policies</button>
-          </Link>
-          <Link to="/dashboard/newpolicyprovider">
-            <button className="divleftdash">Create New Policies</button>
-          </Link>
+          {
+            userdata.type === "Farmer" &&
+            <>
+              <Link to="/dashboard/showpolicyfarmer">
+                <button className="divleftdash">Show Policies</button>
+              </Link>
+              <Link to="/dashboard/mypolicyfarmer">
+                <button className="divleftdash">My Policies</button>
+              </Link>
+            </>
+          }
+
+          {
+            userdata.type === "Insurance Provider" &&
+            <>
+              <Link to="/dashboard/showpolicyprovider">
+                <button className="divleftdash">Show Policies</button>
+              </Link>
+              <Link to="/dashboard/newpolicyprovider">
+                <button className="divleftdash">Create New Policies</button>
+              </Link>
+            </>
+          }
           <Link to="/dashboard/supportandcomplaint">
             <button className="divleftdash">Support</button>
           </Link>

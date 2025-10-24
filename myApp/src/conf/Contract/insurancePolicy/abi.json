@@ -14,58 +14,34 @@
 		"anonymous": false,
 		"inputs": [
 			{
-				"indexed": false,
-				"internalType": "string",
-				"name": "message",
-				"type": "string"
+				"indexed": true,
+				"internalType": "address",
+				"name": "farmer",
+				"type": "address"
 			},
 			{
 				"indexed": false,
 				"internalType": "uint256",
 				"name": "policy_number",
 				"type": "uint256"
-			},
-			{
-				"indexed": false,
-				"internalType": "uint256",
-				"name": "premium",
-				"type": "uint256"
 			}
 		],
-		"name": "InsuranceAgreed",
+		"name": "FarmerAdded",
 		"type": "event"
 	},
 	{
 		"anonymous": false,
 		"inputs": [
 			{
+				"indexed": true,
+				"internalType": "address",
+				"name": "provider",
+				"type": "address"
+			},
+			{
 				"indexed": false,
 				"internalType": "uint256",
 				"name": "policy_number",
-				"type": "uint256"
-			},
-			{
-				"indexed": false,
-				"internalType": "uint256",
-				"name": "insurance_premium",
-				"type": "uint256"
-			},
-			{
-				"indexed": false,
-				"internalType": "uint256",
-				"name": "insurance_period",
-				"type": "uint256"
-			},
-			{
-				"indexed": false,
-				"internalType": "uint256",
-				"name": "agreed_payout_amount",
-				"type": "uint256"
-			},
-			{
-				"indexed": false,
-				"internalType": "uint256",
-				"name": "agreed_index_level",
 				"type": "uint256"
 			}
 		],
@@ -73,88 +49,132 @@
 		"type": "event"
 	},
 	{
+		"anonymous": false,
 		"inputs": [
 			{
+				"indexed": true,
+				"internalType": "address",
+				"name": "farmer",
+				"type": "address"
+			},
+			{
+				"indexed": false,
 				"internalType": "uint256",
 				"name": "policy_number",
 				"type": "uint256"
-			}
-		],
-		"name": "AgreedIndexLevel",
-		"outputs": [
+			},
 			{
+				"indexed": false,
 				"internalType": "uint256",
-				"name": "",
+				"name": "amount",
 				"type": "uint256"
 			}
 		],
-		"stateMutability": "view",
+		"name": "PremiumPaid",
+		"type": "event"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "uint256",
+				"name": "_policyNumber",
+				"type": "uint256"
+			}
+		],
+		"name": "addFarmerToPolicy",
+		"outputs": [],
+		"stateMutability": "nonpayable",
 		"type": "function"
 	},
 	{
 		"inputs": [
 			{
 				"internalType": "uint256",
-				"name": "policy_number",
-				"type": "uint256"
-			}
-		],
-		"name": "InsurancePayOut",
-		"outputs": [
-			{
-				"internalType": "uint256",
-				"name": "",
-				"type": "uint256"
-			}
-		],
-		"stateMutability": "view",
-		"type": "function"
-	},
-	{
-		"inputs": [
-			{
-				"internalType": "uint256",
-				"name": "policy_number",
-				"type": "uint256"
-			}
-		],
-		"name": "InsurancePeriod",
-		"outputs": [
-			{
-				"internalType": "uint256",
-				"name": "",
-				"type": "uint256"
-			}
-		],
-		"stateMutability": "view",
-		"type": "function"
-	},
-	{
-		"inputs": [
-			{
-				"internalType": "uint256",
-				"name": "policy_number",
+				"name": "_policyNumber",
 				"type": "uint256"
 			},
 			{
-				"internalType": "uint256",
-				"name": "insurance_premium",
-				"type": "uint256"
+				"internalType": "string",
+				"name": "_policyName",
+				"type": "string"
 			},
 			{
-				"internalType": "uint256",
-				"name": "insurance_period",
-				"type": "uint256"
+				"components": [
+					{
+						"internalType": "uint256",
+						"name": "policy_in_months",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "policy_in_days",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "payout_in_months",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "payout_in_days",
+						"type": "uint256"
+					}
+				],
+				"internalType": "struct InsurancePolicy.policy_duration",
+				"name": "_pduration",
+				"type": "tuple"
 			},
 			{
-				"internalType": "uint256",
-				"name": "agreed_payout_amount",
-				"type": "uint256"
+				"components": [
+					{
+						"internalType": "uint256",
+						"name": "premium_amount",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "payout_amount",
+						"type": "uint256"
+					}
+				],
+				"internalType": "struct InsurancePolicy.policy_amount",
+				"name": "_pamount",
+				"type": "tuple"
 			},
 			{
-				"internalType": "uint256",
-				"name": "agreed_index_level",
-				"type": "uint256"
+				"components": [
+					{
+						"internalType": "string",
+						"name": "area_name",
+						"type": "string"
+					},
+					{
+						"internalType": "string",
+						"name": "area_type",
+						"type": "string"
+					}
+				],
+				"internalType": "struct InsurancePolicy.policy_area",
+				"name": "_parea",
+				"type": "tuple"
+			},
+			{
+				"components": [
+					{
+						"internalType": "uint256",
+						"name": "index_level",
+						"type": "uint256"
+					},
+					{
+						"internalType": "string",
+						"name": "index_type",
+						"type": "string"
+					}
+				],
+				"internalType": "struct InsurancePolicy.policy_index",
+				"name": "_pindex",
+				"type": "tuple"
 			}
 		],
 		"name": "addInsurancePolicy",
@@ -165,12 +185,12 @@
 	{
 		"inputs": [
 			{
-				"internalType": "address",
-				"name": "desired_address",
-				"type": "address"
+				"internalType": "uint256",
+				"name": "",
+				"type": "uint256"
 			}
 		],
-		"name": "getBalance",
+		"name": "allPolicyNumbers",
 		"outputs": [
 			{
 				"internalType": "uint256",
@@ -184,24 +204,742 @@
 	{
 		"inputs": [
 			{
-				"internalType": "bool",
-				"name": "farmerDecision",
-				"type": "bool"
+				"internalType": "address",
+				"name": "",
+				"type": "address"
 			},
+			{
+				"internalType": "uint256",
+				"name": "",
+				"type": "uint256"
+			}
+		],
+		"name": "farmerPolicies",
+		"outputs": [
+			{
+				"internalType": "uint256",
+				"name": "",
+				"type": "uint256"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "uint256",
+				"name": "_policyNumber",
+				"type": "uint256"
+			}
+		],
+		"name": "getFarmers",
+		"outputs": [
+			{
+				"internalType": "address[]",
+				"name": "",
+				"type": "address[]"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "uint256",
+				"name": "_policyNumber",
+				"type": "uint256"
+			}
+		],
+		"name": "getInsurance",
+		"outputs": [
+			{
+				"components": [
+					{
+						"internalType": "uint256",
+						"name": "policy_number",
+						"type": "uint256"
+					},
+					{
+						"components": [
+							{
+								"internalType": "uint256",
+								"name": "date_of_creation",
+								"type": "uint256"
+							},
+							{
+								"internalType": "string",
+								"name": "name_of_policy",
+								"type": "string"
+							},
+							{
+								"internalType": "address",
+								"name": "provider",
+								"type": "address"
+							},
+							{
+								"internalType": "address[]",
+								"name": "farmers",
+								"type": "address[]"
+							}
+						],
+						"internalType": "struct InsurancePolicy.policy_details",
+						"name": "pdetails",
+						"type": "tuple"
+					},
+					{
+						"components": [
+							{
+								"internalType": "uint256",
+								"name": "policy_in_months",
+								"type": "uint256"
+							},
+							{
+								"internalType": "uint256",
+								"name": "policy_in_days",
+								"type": "uint256"
+							},
+							{
+								"internalType": "uint256",
+								"name": "payout_in_months",
+								"type": "uint256"
+							},
+							{
+								"internalType": "uint256",
+								"name": "payout_in_days",
+								"type": "uint256"
+							}
+						],
+						"internalType": "struct InsurancePolicy.policy_duration",
+						"name": "pduration",
+						"type": "tuple"
+					},
+					{
+						"components": [
+							{
+								"internalType": "uint256",
+								"name": "premium_amount",
+								"type": "uint256"
+							},
+							{
+								"internalType": "uint256",
+								"name": "payout_amount",
+								"type": "uint256"
+							}
+						],
+						"internalType": "struct InsurancePolicy.policy_amount",
+						"name": "pamount",
+						"type": "tuple"
+					},
+					{
+						"components": [
+							{
+								"internalType": "string",
+								"name": "area_name",
+								"type": "string"
+							},
+							{
+								"internalType": "string",
+								"name": "area_type",
+								"type": "string"
+							}
+						],
+						"internalType": "struct InsurancePolicy.policy_area",
+						"name": "parea",
+						"type": "tuple"
+					},
+					{
+						"components": [
+							{
+								"internalType": "uint256",
+								"name": "index_level",
+								"type": "uint256"
+							},
+							{
+								"internalType": "string",
+								"name": "index_type",
+								"type": "string"
+							}
+						],
+						"internalType": "struct InsurancePolicy.policy_index",
+						"name": "pindex",
+						"type": "tuple"
+					}
+				],
+				"internalType": "struct InsurancePolicy.insurance",
+				"name": "",
+				"type": "tuple"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [],
+		"name": "getPoliciesForFarmer",
+		"outputs": [
+			{
+				"components": [
+					{
+						"internalType": "uint256",
+						"name": "policy_number",
+						"type": "uint256"
+					},
+					{
+						"components": [
+							{
+								"internalType": "uint256",
+								"name": "date_of_creation",
+								"type": "uint256"
+							},
+							{
+								"internalType": "string",
+								"name": "name_of_policy",
+								"type": "string"
+							},
+							{
+								"internalType": "address",
+								"name": "provider",
+								"type": "address"
+							},
+							{
+								"internalType": "address[]",
+								"name": "farmers",
+								"type": "address[]"
+							}
+						],
+						"internalType": "struct InsurancePolicy.policy_details",
+						"name": "pdetails",
+						"type": "tuple"
+					},
+					{
+						"components": [
+							{
+								"internalType": "uint256",
+								"name": "policy_in_months",
+								"type": "uint256"
+							},
+							{
+								"internalType": "uint256",
+								"name": "policy_in_days",
+								"type": "uint256"
+							},
+							{
+								"internalType": "uint256",
+								"name": "payout_in_months",
+								"type": "uint256"
+							},
+							{
+								"internalType": "uint256",
+								"name": "payout_in_days",
+								"type": "uint256"
+							}
+						],
+						"internalType": "struct InsurancePolicy.policy_duration",
+						"name": "pduration",
+						"type": "tuple"
+					},
+					{
+						"components": [
+							{
+								"internalType": "uint256",
+								"name": "premium_amount",
+								"type": "uint256"
+							},
+							{
+								"internalType": "uint256",
+								"name": "payout_amount",
+								"type": "uint256"
+							}
+						],
+						"internalType": "struct InsurancePolicy.policy_amount",
+						"name": "pamount",
+						"type": "tuple"
+					},
+					{
+						"components": [
+							{
+								"internalType": "string",
+								"name": "area_name",
+								"type": "string"
+							},
+							{
+								"internalType": "string",
+								"name": "area_type",
+								"type": "string"
+							}
+						],
+						"internalType": "struct InsurancePolicy.policy_area",
+						"name": "parea",
+						"type": "tuple"
+					},
+					{
+						"components": [
+							{
+								"internalType": "uint256",
+								"name": "index_level",
+								"type": "uint256"
+							},
+							{
+								"internalType": "string",
+								"name": "index_type",
+								"type": "string"
+							}
+						],
+						"internalType": "struct InsurancePolicy.policy_index",
+						"name": "pindex",
+						"type": "tuple"
+					}
+				],
+				"internalType": "struct InsurancePolicy.insurance[]",
+				"name": "",
+				"type": "tuple[]"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [],
+		"name": "getPoliciesForInsuranceProvider",
+		"outputs": [
+			{
+				"components": [
+					{
+						"internalType": "uint256",
+						"name": "policy_number",
+						"type": "uint256"
+					},
+					{
+						"components": [
+							{
+								"internalType": "uint256",
+								"name": "date_of_creation",
+								"type": "uint256"
+							},
+							{
+								"internalType": "string",
+								"name": "name_of_policy",
+								"type": "string"
+							},
+							{
+								"internalType": "address",
+								"name": "provider",
+								"type": "address"
+							},
+							{
+								"internalType": "address[]",
+								"name": "farmers",
+								"type": "address[]"
+							}
+						],
+						"internalType": "struct InsurancePolicy.policy_details",
+						"name": "pdetails",
+						"type": "tuple"
+					},
+					{
+						"components": [
+							{
+								"internalType": "uint256",
+								"name": "policy_in_months",
+								"type": "uint256"
+							},
+							{
+								"internalType": "uint256",
+								"name": "policy_in_days",
+								"type": "uint256"
+							},
+							{
+								"internalType": "uint256",
+								"name": "payout_in_months",
+								"type": "uint256"
+							},
+							{
+								"internalType": "uint256",
+								"name": "payout_in_days",
+								"type": "uint256"
+							}
+						],
+						"internalType": "struct InsurancePolicy.policy_duration",
+						"name": "pduration",
+						"type": "tuple"
+					},
+					{
+						"components": [
+							{
+								"internalType": "uint256",
+								"name": "premium_amount",
+								"type": "uint256"
+							},
+							{
+								"internalType": "uint256",
+								"name": "payout_amount",
+								"type": "uint256"
+							}
+						],
+						"internalType": "struct InsurancePolicy.policy_amount",
+						"name": "pamount",
+						"type": "tuple"
+					},
+					{
+						"components": [
+							{
+								"internalType": "string",
+								"name": "area_name",
+								"type": "string"
+							},
+							{
+								"internalType": "string",
+								"name": "area_type",
+								"type": "string"
+							}
+						],
+						"internalType": "struct InsurancePolicy.policy_area",
+						"name": "parea",
+						"type": "tuple"
+					},
+					{
+						"components": [
+							{
+								"internalType": "uint256",
+								"name": "index_level",
+								"type": "uint256"
+							},
+							{
+								"internalType": "string",
+								"name": "index_type",
+								"type": "string"
+							}
+						],
+						"internalType": "struct InsurancePolicy.policy_index",
+						"name": "pindex",
+						"type": "tuple"
+					}
+				],
+				"internalType": "struct InsurancePolicy.insurance[]",
+				"name": "",
+				"type": "tuple[]"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "uint256",
+				"name": "",
+				"type": "uint256"
+			}
+		],
+		"name": "insurances",
+		"outputs": [
 			{
 				"internalType": "uint256",
 				"name": "policy_number",
 				"type": "uint256"
 			},
 			{
-				"internalType": "address payable",
-				"name": "insurance_provider",
+				"components": [
+					{
+						"internalType": "uint256",
+						"name": "date_of_creation",
+						"type": "uint256"
+					},
+					{
+						"internalType": "string",
+						"name": "name_of_policy",
+						"type": "string"
+					},
+					{
+						"internalType": "address",
+						"name": "provider",
+						"type": "address"
+					},
+					{
+						"internalType": "address[]",
+						"name": "farmers",
+						"type": "address[]"
+					}
+				],
+				"internalType": "struct InsurancePolicy.policy_details",
+				"name": "pdetails",
+				"type": "tuple"
+			},
+			{
+				"components": [
+					{
+						"internalType": "uint256",
+						"name": "policy_in_months",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "policy_in_days",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "payout_in_months",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "payout_in_days",
+						"type": "uint256"
+					}
+				],
+				"internalType": "struct InsurancePolicy.policy_duration",
+				"name": "pduration",
+				"type": "tuple"
+			},
+			{
+				"components": [
+					{
+						"internalType": "uint256",
+						"name": "premium_amount",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "payout_amount",
+						"type": "uint256"
+					}
+				],
+				"internalType": "struct InsurancePolicy.policy_amount",
+				"name": "pamount",
+				"type": "tuple"
+			},
+			{
+				"components": [
+					{
+						"internalType": "string",
+						"name": "area_name",
+						"type": "string"
+					},
+					{
+						"internalType": "string",
+						"name": "area_type",
+						"type": "string"
+					}
+				],
+				"internalType": "struct InsurancePolicy.policy_area",
+				"name": "parea",
+				"type": "tuple"
+			},
+			{
+				"components": [
+					{
+						"internalType": "uint256",
+						"name": "index_level",
+						"type": "uint256"
+					},
+					{
+						"internalType": "string",
+						"name": "index_type",
+						"type": "string"
+					}
+				],
+				"internalType": "struct InsurancePolicy.policy_index",
+				"name": "pindex",
+				"type": "tuple"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [],
+		"name": "owner",
+		"outputs": [
+			{
+				"internalType": "address",
+				"name": "",
 				"type": "address"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "uint256",
+				"name": "_policyNumber",
+				"type": "uint256"
 			}
 		],
 		"name": "payInsurancePremium",
 		"outputs": [],
 		"stateMutability": "payable",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "address",
+				"name": "",
+				"type": "address"
+			},
+			{
+				"internalType": "uint256",
+				"name": "",
+				"type": "uint256"
+			}
+		],
+		"name": "providerPolicies",
+		"outputs": [
+			{
+				"internalType": "uint256",
+				"name": "",
+				"type": "uint256"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"components": [
+					{
+						"internalType": "string",
+						"name": "area_name",
+						"type": "string"
+					},
+					{
+						"internalType": "string",
+						"name": "area_type",
+						"type": "string"
+					}
+				],
+				"internalType": "struct InsurancePolicy.policy_area",
+				"name": "pa",
+				"type": "tuple"
+			}
+		],
+		"name": "showPolicestoFarmer",
+		"outputs": [
+			{
+				"components": [
+					{
+						"internalType": "uint256",
+						"name": "policy_number",
+						"type": "uint256"
+					},
+					{
+						"components": [
+							{
+								"internalType": "uint256",
+								"name": "date_of_creation",
+								"type": "uint256"
+							},
+							{
+								"internalType": "string",
+								"name": "name_of_policy",
+								"type": "string"
+							},
+							{
+								"internalType": "address",
+								"name": "provider",
+								"type": "address"
+							},
+							{
+								"internalType": "address[]",
+								"name": "farmers",
+								"type": "address[]"
+							}
+						],
+						"internalType": "struct InsurancePolicy.policy_details",
+						"name": "pdetails",
+						"type": "tuple"
+					},
+					{
+						"components": [
+							{
+								"internalType": "uint256",
+								"name": "policy_in_months",
+								"type": "uint256"
+							},
+							{
+								"internalType": "uint256",
+								"name": "policy_in_days",
+								"type": "uint256"
+							},
+							{
+								"internalType": "uint256",
+								"name": "payout_in_months",
+								"type": "uint256"
+							},
+							{
+								"internalType": "uint256",
+								"name": "payout_in_days",
+								"type": "uint256"
+							}
+						],
+						"internalType": "struct InsurancePolicy.policy_duration",
+						"name": "pduration",
+						"type": "tuple"
+					},
+					{
+						"components": [
+							{
+								"internalType": "uint256",
+								"name": "premium_amount",
+								"type": "uint256"
+							},
+							{
+								"internalType": "uint256",
+								"name": "payout_amount",
+								"type": "uint256"
+							}
+						],
+						"internalType": "struct InsurancePolicy.policy_amount",
+						"name": "pamount",
+						"type": "tuple"
+					},
+					{
+						"components": [
+							{
+								"internalType": "string",
+								"name": "area_name",
+								"type": "string"
+							},
+							{
+								"internalType": "string",
+								"name": "area_type",
+								"type": "string"
+							}
+						],
+						"internalType": "struct InsurancePolicy.policy_area",
+						"name": "parea",
+						"type": "tuple"
+					},
+					{
+						"components": [
+							{
+								"internalType": "uint256",
+								"name": "index_level",
+								"type": "uint256"
+							},
+							{
+								"internalType": "string",
+								"name": "index_type",
+								"type": "string"
+							}
+						],
+						"internalType": "struct InsurancePolicy.policy_index",
+						"name": "pindex",
+						"type": "tuple"
+					}
+				],
+				"internalType": "struct InsurancePolicy.insurance[]",
+				"name": "",
+				"type": "tuple[]"
+			}
+		],
+		"stateMutability": "view",
 		"type": "function"
 	}
 ]

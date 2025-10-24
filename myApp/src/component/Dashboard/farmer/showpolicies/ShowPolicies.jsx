@@ -1,40 +1,49 @@
 import React, { useState } from "react";
+
+import { addFarmerToPolicy,showPolicestoFarmer } from "../../../../conf/Contract/insurancePolicy/insurancePolicy";
+
 import "./ShowPolicies.css";
 
-const tempdata = {
-    id:"1",
-    areaname: "Ambala",
-    areanametype: "city",
-    dateofcreation: "1212-12-12",
-    indexlevel: "120",
-    indexleveltype: "subdistrict",
-    nameofpolicy: "Gursimranjeet Policy",
-    paymentamt: "20",
-    paymentamttype: "1000",
-    policydurationdays: "0",
-    policyofdurationmonth: "12",
-    premiumamt: "1",
-    premiumamttype: "100000",
-    premiumpaymentdays: "-1",
-    premiumpaymentmonth: "1"
-};
-
 export default function ShowPolicies() {
-    const [policydata, setPolicyData] = useState([tempdata,tempdata]);
+    const [policydata, setPolicyData] = useState([]);
 
-    function handleClick() {
-      
+    async function handleClick() {
+        const policy_area={area_name:document.getElementById("placename").value,
+            area_type:document.getElementById("placetype").value
+        }
+        console.log(policy_area)
+        const data = await showPolicestoFarmer(policy_area);
+        
+        const safeJSON = JSON.stringify(data, (key, value) =>
+            typeof value === 'bigint' ? value.toString() : value
+        );
+        const parsedData = JSON.parse(safeJSON);
+
+        // console.log(parsedData);
+        
+        setPolicyData(parsedData)
     }
-    function handleSubs(id){
-        if(!window.confirm("Do u agree with the terms and condition?")) return;
-        //logic handling
+    async function handleSubs(id) {
+        if (!window.confirm("Do u agree with the terms and condition?")) return;
+        try {
+
+            const tx = await addFarmerToPolicy(Number(id));
+
+            // console.log(receipt);
+
+        } catch (error) {
+            console.error("Error adding farmer:", error);
+            // alert("Transaction failed: " + (error.message || error));
+        }
+
+
     }
     return (
         <>
             <h1 id="showpolicyh1">Available Policies</h1>
             <div id="searchpolicy">
-                <input type="text" placeholder="for eg. Bangalore" required  />
-                <select className="selectinput" name="areanametype">
+                <input id="placename" type="text" placeholder="for eg. Bangalore" required />
+                <select id="placetype" className="selectinput" name="areanametype">
                     <option value="village">Village</option>
                     <option value="subdistrict">Taluk / Sub-district</option>
                     <option value="district">District</option>
@@ -47,26 +56,35 @@ export default function ShowPolicies() {
 
             {policydata.map((p, index) => (
                 <div key={index} id="policy-container">
-                    <div className="policyband"><div>UID</div><div>{p.id}</div></div>
-                    <div className="policyband"><div>Name of Policy</div><div>{p.nameofpolicy}</div></div>
-                    <div className="policyband"><div>Date of Creation</div><div>{p.dateofcreation}</div></div>
+                    <div className="policyband"><div>UID</div><div>{p[0]}</div></div>
+                    <div className="policyband"><div>Name of Policy</div><div>{p[1][1]}</div></div>
+                    <div className="policyband"><div>Date of Creation</div><div>{new Date(Number(p[1][0])).toLocaleString()}</div></div>
                     <div className="policyband">
                         <div>Policy Duration</div>
-                        <div>{`${p.policyofdurationmonth} Months ${p.policydurationdays} Days`}</div>
+                        <div>{`${p[2][0]} Months ${p[2][1]} Days`}</div>
+                    </div>
+                    <div className="policyband">
+                        <div>Premium Duration</div>
+                        <div>{`${p[2][2]} Months ${p[2][3]} Days`}</div>
                     </div>
                     <div className="policyband">
                         <div>Premium Amount Set</div>
-                        <div>{`${p.premiumamt} ${p.premiumamttype}`}</div>
+                        <div>{p[3][0]}</div>
                     </div>
                     <div className="policyband">
                         <div>Payout Amount Set</div>
-                        <div>{`${p.paymentamt} ${p.paymentamttype}`}</div>
+                        <div>{p[3][1]}</div>
                     </div>
                     <div className="policyband">
                         <div>Index level Set</div>
-                        <div>{`${p.indexlevel} ${p.indexleveltype}`}</div>
+                        <div>{p[5][0]}</div>
                     </div>
-                    <button id="showbtn" onClick={() => handleSubs(p.id)}>Subscribe</button>
+                    <div className="policyband">
+                        <div>Index Type</div>
+                        <div>{p[5][1]}</div>
+                    </div>
+                    <button id="showbtn" onClick={() => handleSubs(p[0])}>Subscribe</button>
+                    
                 </div>
             ))}
         </>

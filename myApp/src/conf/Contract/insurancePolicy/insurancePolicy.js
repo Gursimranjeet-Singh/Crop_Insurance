@@ -1,84 +1,90 @@
 import { ethers } from "ethers";
-import { insertContract, getContractAdd } from "../registry/registry";
 import contractABI from "./abi.json";
-import byteCode from "./byteCode.txt";
 
-export async function deployContractInsurancePolicy(addressRegisterContract) {
-    if (!window.ethereum) throw new Error("MetaMask not installed");
-
-    const provider = new ethers.BrowserProvider(window.ethereum);
-    const signer = await provider.getSigner();
-
-    const factory = new ethers.ContractFactory(contractABI, byteCode, signer);
-    const contract = await factory.deploy(addressRegisterContract);
-
-    // console.log("Deploying, tx hash:", contract.deploymentTransaction().hash);
-
-    await contract.waitForDeployment();
-    await insertContract(contract.target);
-
-    // console.log("Deployed at:", contract.target);
-    return contract.target;
-}
+const contractAddress = "0xe7c86AA3F73F6Cff8a3eE7e843484B805174a208";
 
 export async function getContract() {
-    if (!window.ethereum) throw new Error("MetaMask not installed");
+    if (!window.ethereum) {
+        throw new Error("MetaMask not installed");
+    }
 
     const provider = new ethers.BrowserProvider(window.ethereum);
     const signer = await provider.getSigner();
     const signerAddress = await signer.getAddress();
 
-    const contractAddress = await getContractAdd(signerAddress);
-    return new ethers.Contract(contractAddress, contractABI, signer);
+    const contract = new ethers.Contract(contractAddress, contractABI, signer);
+
+    return contract;
 }
+
 
 export async function addInsurancePolicy(
     policy_number,
-    insurance_premium,
-    insurance_period,
-    agreed_payout_amount,
-    agreed_index_level
+    policy_name,
+    pduration,
+    pamount,
+    parea,
+    pindex
 ) {
     const contract = await getContract();
     const tx = await contract.addInsurancePolicy(
         policy_number,
-        insurance_premium,
-        insurance_period,
-        agreed_payout_amount,
-        agreed_index_level
+        policy_name,
+        pduration,
+        pamount,
+        parea,
+        pindex
     );
     return await tx.wait();
 }
 
-export async function getInsurancePeriod(policy_number) {
+export async function addFarmerToPolicy(policy_number) {
     const contract = await getContract();
-    return await contract.InsurancePeriod(policy_number);
-}
-
-export async function getInsurancePayOut(policy_number) {
-    const contract = await getContract();
-    return await contract.InsurancePayOut(policy_number);
-}
-
-export async function getAgreedIndexLevel(policy_number) {
-    const contract = await getContract();
-    return await contract.AgreedIndexLevel(policy_number);
-}
-
-export async function getInsurancePremium(policy_number) {
-    const contract = await getContract();
-    return await contract.getInsurancePremium(policy_number);
-}
-
-//must be connected to farmers wallet for this 
-export async function payInsurancePremium(farmerDecision, policy_number) {
-    const contract = await getContract();
-
-    const premium = await getInsurancePremium(policy_number);
-
-    const tx = await contract.payInsurancePremium(farmerDecision, policy_number, {
-        value: premium
-    });
-
+    const tx = await contract.addFarmerToPolicy(
+        policy_number
+    );
     return await tx.wait();
 }
+
+export async function payInsurancePremium(policy_number,premiumInWei) {
+    const contract = await getContract();
+    const tx = await contract.payInsurancePremium(
+        policy_number,{value:premiumInWei}
+    );
+    return await tx.wait();
+}
+
+export async function getInsurance(policy_number) {
+    const contract = await getContract();
+    const data = await contract.getInsurance(
+        policy_number
+    );
+    return data;
+}
+
+export async function getFarmers(policy_number) {
+    const contract = await getContract();
+    const data = await contract.getFarmers(
+        policy_number
+    );
+    return data;
+}
+
+export async function getPoliciesForInsuranceProvider() {
+    const contract = await getContract();
+    const data = await contract.getPoliciesForInsuranceProvider();
+    return data;
+}
+
+export async function getPoliciesForFarmer() {
+    const contract = await getContract();
+    const data = await contract.getPoliciesForFarmer();
+    return data;
+}
+
+export async function showPolicestoFarmer(policy_area) {
+    const contract = await getContract();
+    const data = await contract.showPolicestoFarmer(policy_area);
+    return data;
+}
+
