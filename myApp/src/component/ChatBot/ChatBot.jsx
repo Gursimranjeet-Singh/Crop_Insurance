@@ -1,4 +1,5 @@
 import React, { useState, useRef, useEffect } from "react";
+import Header from "../Header/Header";
 
 export default function ChatBot() {
   const [messages, setMessages] = useState([
@@ -53,25 +54,15 @@ export default function ChatBot() {
       display: "flex",
       flexDirection: "column",
       fontFamily: "Arial, sans-serif",
-      backgroundColor: "#f7f9f7" 
+      backgroundColor: "#f7f9f7" ,
+      fontSize:"2rem"
     }}>
-
-      <div style={{
-        backgroundColor: "#1f6212", 
-        color: "white",
-        padding: "1rem",
-        textAlign: "center",
-        fontWeight: "bold",
-        fontSize: "1.2rem"
-      }}>
-        Krishi Chatbot - Ask about Crops & Farming
-      </div>
-
-
+      <Header />
       <div style={{
         flex: 1,
         padding: "1rem",
-        overflowY: "auto"
+        overflowY: "auto",
+        
       }}>
         {messages.map((m, i) => (
           <div key={i} style={{
@@ -85,7 +76,8 @@ export default function ChatBot() {
               padding: "0.5rem 1rem",
               borderRadius: "10px",
               maxWidth: "60%",
-              boxShadow: "0 1px 3px rgba(0,0,0,0.1)"
+              boxShadow: "0 1px 3px rgba(0,0,0,0.1)",
+              
             }}>
               {m.text}
             </div>

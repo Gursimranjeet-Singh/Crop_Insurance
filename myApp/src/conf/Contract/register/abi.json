@@ -45,19 +45,6 @@
 	{
 		"inputs": [
 			{
-				"internalType": "enum Registration.Role",
-				"name": "r",
-				"type": "uint8"
-			}
-		],
-		"name": "registerUser",
-		"outputs": [],
-		"stateMutability": "nonpayable",
-		"type": "function"
-	},
-	{
-		"inputs": [
-			{
 				"internalType": "address",
 				"name": "s",
 				"type": "address"
@@ -91,6 +78,19 @@
 			}
 		],
 		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "enum Registration.Role",
+				"name": "r",
+				"type": "uint8"
+			}
+		],
+		"name": "registerUser",
+		"outputs": [],
+		"stateMutability": "nonpayable",
 		"type": "function"
 	},
 	{

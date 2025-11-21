@@ -155,7 +155,7 @@
     align-items: center;
 }
 
-#logandsign button {
+#logandsign Link {
     color: black;
     font-size: 1.2rem;
     border-color: #6dc420;
@@ -176,6 +176,13 @@
     border-top-right-radius: 0.6rem;
     border-bottom-right-radius: 0.6rem;
     background-color: #5ccf5c;
+}
+
+#sign a{
+    text-decoration: none;
+}
+#register a{
+    text-decoration: none;
 }
 
 #navbar {

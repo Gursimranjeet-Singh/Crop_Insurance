@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import { Link } from "react-router-dom";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faHeadset } from '@fortawesome/free-solid-svg-icons'
 import { faSquareWhatsapp } from '@fortawesome/free-brands-svg-icons'
@@ -62,8 +63,13 @@ const Header = () => {
                         </div>
                         {
                             !hideButtons && <div id="logandsign">
-                                <button id='sign'>Sign in</button>
-                                <button id='register'>Register</button>
+                                <button id='sign'>
+                                    <Link to="/chatbot">Chat Bot</Link>
+                                </button>
+                                <button id='register'>
+                                    <Link to="/dashboard">Dashboard</Link>
+                                </button>
+
                             </div>
                         }
 
@@ -72,7 +78,7 @@ const Header = () => {
 
                 </div>
                 <div id='navbar'>
-                    <div><a>Home</a></div>
+                    <div><Link to="/">Home</Link></div>
                     {!hideButtons && <><div><a>Related Links</a></div>
                         <div><a>Reports</a></div>
                         <div><a>Contact Us</a></div>

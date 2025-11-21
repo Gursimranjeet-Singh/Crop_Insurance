@@ -48,11 +48,14 @@ contract InsurancePolicy {
     mapping(uint256 => insurance) public insurances;
     mapping(address => uint256[]) public farmerPolicies;
     mapping(address => uint256[]) public providerPolicies;
+    mapping(address => uint) public providerBalances;
+
     uint[] public allPolicyNumbers;
 
     event NewInsurancePolicyAdded(address indexed provider, uint policy_number);
     event FarmerAdded(address indexed farmer, uint policy_number);
     event PremiumPaid(address indexed farmer, uint policy_number, uint amount);
+    event PayoutPaid(address indexed farmer, uint policy_number, uint amount);
 
     modifier onlyOwner() {
         require(msg.sender == owner, "Sender not authorized (not owner).");
@@ -87,11 +90,13 @@ contract InsurancePolicy {
         policy_amount calldata _pamount,
         policy_area calldata _parea,
         policy_index calldata _pindex
-    ) public onlyInsuranceProvider {
+    ) public payable onlyInsuranceProvider {
         require(
             insurances[_policyNumber].policy_number == 0,
             "Policy ID already exists"
         );
+
+        providerBalances[msg.sender] += msg.value;
 
         address[] memory emptyFarmers;
 
@@ -138,7 +143,7 @@ contract InsurancePolicy {
     function payInsurancePremium(uint _policyNumber) public payable onlyFarmer {
         insurance storage policy = insurances[_policyNumber];
         require(policy.policy_number != 0, "Invalid policy ID");
-        
+
         bool isIncluded = false;
         for (uint i = 0; i < policy.pdetails.farmers.length; i++) {
             if (policy.pdetails.farmers[i] == msg.sender) {
@@ -150,19 +155,29 @@ contract InsurancePolicy {
 
         emit PremiumPaid(msg.sender, _policyNumber, msg.value);
 
-        (bool sent, ) = payable(policy.pdetails.provider).call{value: msg.value}("");
+        (bool sent, ) = payable(policy.pdetails.provider).call{
+            value: msg.value
+        }("");
         require(sent, "Failed to transfer premium to provider");
     }
 
-    function getInsurance(uint _policyNumber) public view returns (insurance memory) {
+    function getInsurance(
+        uint _policyNumber
+    ) public view returns (insurance memory) {
         return insurances[_policyNumber];
     }
 
-    function getFarmers(uint _policyNumber) public view returns (address[] memory) {
+    function getFarmers(
+        uint _policyNumber
+    ) public view returns (address[] memory) {
         return insurances[_policyNumber].pdetails.farmers;
     }
 
-    function getPoliciesForInsuranceProvider() public view returns (insurance[] memory) {
+    function getPoliciesForInsuranceProvider()
+        public
+        view
+        returns (insurance[] memory)
+    {
         uint[] memory policyNumbers = providerPolicies[msg.sender];
         insurance[] memory result = new insurance[](policyNumbers.length);
         for (uint i = 0; i < policyNumbers.length; i++) {
@@ -180,13 +195,17 @@ contract InsurancePolicy {
         return result;
     }
 
-    function showPolicestoFarmer(policy_area memory pa) public view returns (insurance[] memory) {
+    function showPolicestoFarmer(
+        policy_area memory pa
+    ) public view returns (insurance[] memory) {
         uint count = 0;
         for (uint i = 0; i < allPolicyNumbers.length; i++) {
             insurance storage pol = insurances[allPolicyNumbers[i]];
             if (
-                keccak256(bytes(pol.parea.area_name)) == keccak256(bytes(pa.area_name)) &&
-                keccak256(bytes(pol.parea.area_type)) == keccak256(bytes(pa.area_type))
+                keccak256(bytes(pol.parea.area_name)) ==
+                    keccak256(bytes(pa.area_name)) &&
+                keccak256(bytes(pol.parea.area_type)) ==
+                    keccak256(bytes(pa.area_type))
             ) {
                 count++;
             }
@@ -197,8 +216,10 @@ contract InsurancePolicy {
         for (uint i = 0; i < allPolicyNumbers.length; i++) {
             insurance storage pol = insurances[allPolicyNumbers[i]];
             if (
-                keccak256(bytes(pol.parea.area_name)) == keccak256(bytes(pa.area_name)) &&
-                keccak256(bytes(pol.parea.area_type)) == keccak256(bytes(pa.area_type))
+                keccak256(bytes(pol.parea.area_name)) ==
+                    keccak256(bytes(pa.area_name)) &&
+                keccak256(bytes(pol.parea.area_type)) ==
+                    keccak256(bytes(pa.area_type))
             ) {
                 result[j] = pol;
                 j++;
@@ -206,5 +227,41 @@ contract InsurancePolicy {
         }
 
         return result;
+    }
+
+    function deductProviderBalance(address provider, uint amount) public {
+        require(providerBalances[provider] >= amount, "Insufficient balance");
+        providerBalances[provider] -= amount;
+    }
+
+    function indexData(
+        uint indexValue,
+        uint policyNumber,
+        uint payoutAmountInWei
+    ) public {
+        insurance storage ins = insurances[policyNumber];
+
+        require(indexValue > ins.pindex.index_level, "Index too low");
+
+        address provider = ins.pdetails.provider;
+        address[] memory farmers = getFarmers(policyNumber);
+
+        uint totalPayout = payoutAmountInWei * farmers.length;
+
+        require(
+            providerBalances[provider] >= totalPayout,
+            "Provider has insufficient funds"
+        );
+
+        deductProviderBalance(provider, totalPayout);
+
+        for (uint i = 0; i < farmers.length; i++) {
+            emit PayoutPaid(farmers[i], policyNumber, payoutAmountInWei);
+
+            (bool sent, ) = payable(farmers[i]).call{value: payoutAmountInWei}(
+                ""
+            );
+            require(sent, "Transfer failed");
+        }
     }
 }

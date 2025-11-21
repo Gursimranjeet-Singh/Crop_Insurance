@@ -12,7 +12,7 @@
 #supporth1 {
   font-size: 3.5rem;
   font-weight: 700;
-  color: #005fa7;
+  color: #5e9f2a;
 }
 #supportp{
     font-size: 2rem;
@@ -66,7 +66,7 @@
 #supportform textarea:hover,
 #supportform select:hover {
   outline: none;
-  border: 1px solid #095484;
+  border: 1px solid #5e9f2a;
 }
 #supportform select {
   padding: 7px 0;
@@ -128,13 +128,13 @@ input[type="date"]::-webkit-calendar-picker-indicator {
   -webkit-border-radius: 5px;
   -moz-border-radius: 5px;
   border-radius: 5px;
-  background-color: #095484;
+  background-color: #5e9f2a;
   font-size: 16px;
   color: #fff;
   cursor: pointer;
 }
 #supportform button:hover {
-  background-color: #0666a3;
+  background-color: #5e9f2a;
 }
 @media (min-width: 568px) {
   /* input {

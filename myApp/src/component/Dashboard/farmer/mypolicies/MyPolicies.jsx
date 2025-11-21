@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { ethers } from "ethers";
 
 import { getPoliciesForFarmer, payInsurancePremium } from "../../../../conf/Contract/insurancePolicy/insurancePolicy";
-
+import { trigger } from "../../../../conf/Contract/connectOracle/connectOracle";
 import "./MyPolicies.css";
 
 export default function MyPolicies() {
@@ -38,6 +38,19 @@ export default function MyPolicies() {
             const receipt = await payInsurancePremium(id, premiumInWei);
 
             alert("Premium paid successfully!");
+        } catch (error) {
+            console.error("Error paying premium:", error);
+            alert("Transaction failed: " + (error.reason || error.message || error));
+        }
+    }
+
+    async function handlePayout(id) {
+        try {
+            let userInput;
+            while (!userInput) userInput = window.prompt("Enter a date (YYYY-MM-DD) to claim:");
+
+            await trigger(id, userInput);
+
         } catch (error) {
             console.error("Error paying premium:", error);
             alert("Transaction failed: " + (error.reason || error.message || error));
@@ -85,6 +98,7 @@ export default function MyPolicies() {
                         <div>{p[5][1]}</div>
                     </div>
                     <button id="showbtn" onClick={() => handlePremium(p[0], p[3][0])}>Pay Premium</button>
+                    <button id="showbtn" onClick={() => handlePayout(p[0])}>Get Payout</button>
                 </div>
             ))}
         </>

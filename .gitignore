@@ -7,3 +7,4 @@ hide.txt
 /abi.json 
 /byteCode.txt  
 backend
+abi*.json

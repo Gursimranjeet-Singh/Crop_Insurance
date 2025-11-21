@@ -4,7 +4,7 @@ import contractABI from "./abi.json";
 // import { deployContractInsurancePolicy } from "../insurancePolicy/insurancePolicy";
 // import { addInsuranceProvider } from "../reputation/reputation";
 
-const contractAddress = "0x1CC9c5609D0abF5D452972e526389f44aaD39f56";
+const contractAddress = "";
 
 export async function getContract() {
 	if (!window.ethereum) {

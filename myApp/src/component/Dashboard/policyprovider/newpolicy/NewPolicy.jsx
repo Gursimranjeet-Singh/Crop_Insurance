@@ -1,57 +1,109 @@
 import React from "react";
 import { addInsurancePolicy } from "../../../../conf/Contract/insurancePolicy/insurancePolicy";
+import { ethers } from "ethers";
+
 import "./NewPolicy.css";
 
 function generateUniqueNumber() {
-  return Date.now() + Math.floor(Math.random() * 1000000);
+  const val = Date.now() + Math.floor(Math.random() * 1000000);
+  return val;
 }
 
+
 export default function Support() {
+
+  async function checkBalance(signer, amountInWei) {
+    const signerAddress = await signer.getAddress();
+    const balance = await signer.provider.getBalance(signerAddress);
+
+    const required = BigInt(amountInWei);
+
+    if (balance < required) {
+      throw new Error(
+        `Insufficient balance. Required: ${ethers.formatEther(required)} ETH, Available: ${ethers.formatEther(balance)} ETH`
+      );
+    }
+    return true;
+  }
+
+
+
   async function submitForm(event) {
     event.preventDefault();
 
-    const form = document.getElementById("supportform");
-
-    if (!form.checkValidity()) {
-      form.reportValidity();
-      return;
-    }
-
-    const formData = new FormData(form);
-    const data = Object.fromEntries(formData.entries());
-
-    const premiumInRupees = Number(data.premiumamt) * Number(data.premiumamttype);
-    const payoutInRupees = Number(data.paymentamt) * Number(data.paymentamttype);
-
-    console.log("Test:", data);
-    console.log("Premium in ₹:", premiumInRupees);
-    console.log("Payout in ₹:", payoutInRupees);
-
-    const tx = await addInsurancePolicy(
-      generateUniqueNumber(),
-      data.nameofpolicy,
-      {
-        policy_in_months: Number(data.policyofdurationmonth),
-        policy_in_days: Number(data.policydurationdays),
-        payout_in_months: Number(data.premiumpaymentmonth),
-        payout_in_days: Number(data.premiumpaymentdays),
-      },
-      {
-        premium_amount: premiumInRupees,
-        payout_amount: payoutInRupees,
-      },
-      {
-        area_name: data.areaname,
-        area_type: data.areanametype,
-      },
-      {
-        index_level: Number(data.indexlevel),
-        index_type: data.indexleveltype,
+    try {
+      const form = document.getElementById("supportform");
+      if (!form.checkValidity()) {
+        form.reportValidity();
+        return;
       }
-    );
 
-    // console.log(tx);
+      const formData = new FormData(form);
+      const data = Object.fromEntries(formData.entries());
+
+      const premiumInRupees = Number(data.premiumamt) * Number(data.premiumamttype);
+      const payoutInRupees = Number(data.paymentamt) * Number(data.paymentamttype);
+
+      console.log("Premium in ₹:", premiumInRupees);
+      console.log("Payout in ₹:", payoutInRupees);
+
+
+      const response = await fetch(
+        'https://api.coingecko.com/api/v3/simple/price?ids=ethereum&vs_currencies=inr'
+      );
+      if (!response.ok) throw new Error("Failed to fetch ETH price from CoinGecko");
+      const conversion = await response.json();
+      const ethPriceInINR = conversion.ethereum.inr;
+
+
+      const safetyMultiplier = 2;
+      const payoutInETH = ((payoutInRupees * safetyMultiplier) / ethPriceInINR).toFixed(18);
+      const payoutInWei = ethers.parseEther(payoutInETH.toString());
+
+
+      const provider = new ethers.BrowserProvider(window.ethereum);
+      const signer = await provider.getSigner();
+
+      await checkBalance(signer, payoutInWei);
+      console.log("Sending ETH (wei):", payoutInWei.toString());
+
+
+      const tx = await addInsurancePolicy(
+        generateUniqueNumber(),
+        data.nameofpolicy,
+        {
+          policy_in_months: Number(data.policyofdurationmonth),
+          policy_in_days: Number(data.policydurationdays),
+          payout_in_months: Number(data.premiumpaymentmonth),
+          payout_in_days: Number(data.premiumpaymentdays),
+        },
+        {
+          premium_amount: premiumInRupees,
+          payout_amount: payoutInRupees,
+        },
+        {
+          area_name: data.areaname,
+          area_type: data.areanametype,
+        },
+        {
+          index_level: Number(data.indexlevel),
+          index_type: data.indexleveltype,
+        },
+        { value: payoutInWei }
+      );
+
+      console.log(tx);
+
+      alert("Insurance policy submitted successfully!");
+      form.reset();
+
+    } catch (error) {
+      console.error("Error submitting policy:", error);
+      alert("Transaction failed: " + (error.reason || error.message || error));
+    }
   }
+
+
 
   return (
     <div className="testbox">
@@ -117,11 +169,11 @@ export default function Support() {
           <input type="number" required name="indexlevel" />
           <p>Type</p>
           <select className="selectinput" name="indexleveltype">
-            <option value="humidity (%)">%(Humidity)</option>
-            <option value="rainfall (mm)">mm (Rainfall)</option>
-            <option value="temperature (°C)">°C (Temperature)</option>
-            <option value="windspeed (km/h)">km/h (Wind Speed)</option>
-            <option value="snowfall (cm)">cm (Snowfall)</option>
+            <option value="humidity">%(Humidity)</option>
+            <option value="rainfall">mm (Rainfall)</option>
+            <option value="temperature">°C (Temperature)</option>
+            <option value="windspeed">km/h (Wind Speed)</option>
+            <option value="snowfall">cm (Snowfall)</option>
           </select>
         </div>
 
