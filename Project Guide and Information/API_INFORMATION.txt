@@ -1,0 +1,8 @@
+geocoding api-https://geocoding-api.open-meteo.com/v1/search?name=AREANAME&count=1
+AREANAME needed
+
+ruppee to ethr conversion api-https://api.coingecko.com/api/v3/simple/price?ids=ethereum&vs_currencies=inr
+no requirements
+
+weather data api-https://archive-api.open-meteo.com/v1/era5?latitude=LATITUDE&longitude=LONGITUDE&start_date=START_DATE&end_date=END_DATE&daily=temperature_2m_max,rain_sum,snowfall_sum,windspeed_10m_max&timezone=auto
+LATITUDE, LONGITUDE, START_DATE and END_DATE needed

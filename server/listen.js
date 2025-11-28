@@ -1,22 +1,28 @@
 import { ethers } from "ethers";
-import axios from "axios";   // <-- FIXED
+import axios from "axios";
 import fs from "fs";
+import dotenv from "dotenv";
 
-// -------- LOAD ABI JSON SAFELY (works in all Node versions) --------
+dotenv.config();
+
+
 const contractABI1 = JSON.parse(
-    fs.readFileSync(new URL("./abi1.json", import.meta.url), "utf8")
+    fs.readFileSync(new URL("../blockchain/abi/abi3.json", import.meta.url), "utf8")
 );
 
 const contractABI2 = JSON.parse(
-    fs.readFileSync(new URL("./abi2.json", import.meta.url), "utf8")
+    fs.readFileSync(new URL("../blockchain/abi/abi2.json", import.meta.url), "utf8")
 );
 
 
-const WSS_RPC = "wss://sepolia.infura.io/ws/v3/7274bc86756a48ec8a1e8f4d519c9736";
-const PRIVATE_KEY = "100c90f8f1626a3ea4c3627377682d5f02e063695663aed7db84a2e8ecd752fa";
+const WSS_RPC = `wss://sepolia.infura.io/ws/v3/${process.env.SOCKET_KEY}`;
+const PRIVATE_KEY = process.env.PRIVATE_KEY_WALLET;
 
-const CONTRACT_ADDRESS1 = "";
-const CONTRACT_ADDRESS2 = "";
+// console.log(WSS_RPC);
+// console.log(PRIVATE_KEY);
+
+const CONTRACT_ADDRESS1 = "0x4b22bEF720466f3d9878d3349dcaEAdd46e1dF71";
+const CONTRACT_ADDRESS2 = "0xCea32F1Fa3105DcFB31F72003A4b411Fa765a286";
 
 const provider = new ethers.WebSocketProvider(WSS_RPC);
 const wallet = new ethers.Wallet(PRIVATE_KEY, provider);
@@ -52,7 +58,7 @@ contract1.on("GetIndex", async (id, date, type, area, payoutInRupees) => {
         }
 
         const data = await response.json();
-        const ethPriceInINR = data.ethereum.inr; 
+        const ethPriceInINR = data.ethereum.inr;
 
         console.log("ETH price (INR):", ethPriceInINR);
 
@@ -62,13 +68,13 @@ contract1.on("GetIndex", async (id, date, type, area, payoutInRupees) => {
 
         console.log("Wei per Rupee =", weiPerRupee.toString());
         console.log("Final payout in Wei =", payoutAmountInWei.toString());
-        
-        const rndvalue=Math.round(value);
-   
+
+        const rndvalue = Math.round(value);
+
         const tx = await contract2.indexData(
-            rndvalue,                  
-            id,                     
-            payoutAmountInWei       
+            rndvalue,
+            id,
+            payoutAmountInWei
         );
 
         console.log(`Transaction sent: ${tx.hash}`);
@@ -112,7 +118,7 @@ async function getWeatherValue(lat, lon, date, type) {
     }
 
     type = Number(type);
-    
+
     switch (type) {
         case 1:
             throw new Error("Daily humidity not available in Open-Meteo API");

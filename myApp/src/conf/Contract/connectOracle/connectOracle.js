@@ -1,7 +1,7 @@
 import { ethers } from "ethers";
-import contractABI from "./abi.json";
+import contractABI from "../../../../../blockchain/abi/abi3.json"; 
 
-const contractAddress = "";
+const contractAddress = "0x4b22bEF720466f3d9878d3349dcaEAdd46e1dF71";
 
 export async function getContract() {
     if (!window.ethereum) {

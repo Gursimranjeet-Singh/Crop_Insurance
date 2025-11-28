@@ -46,7 +46,7 @@ const Header = () => {
             <header id="head2">
                 <div id='lang'>
                     <div id='langcontent'>
-                        <div><div>ਖੇਤੀ ਹੱਲ</div><div>KRISHI SOLUTIONS</div></div>
+                        <div><div>ਖੇਤੀ ਹੱਲ</div><div>Farmer Welfare</div></div>
                         <div id='verticalruler'></div>
                         <div><div>ਸਮਾਰਟ ਖੇਤੀ ਲਈ ਡਿਜ਼ਿਟਲ ਪਲੇਟਫ਼ਾਰਮ</div><div>A DIGITAL PLATFORM FOR SMART FARMING</div></div>
                     </div>
@@ -58,8 +58,9 @@ const Header = () => {
                         <div id="logosticker"></div>
                         <div id='verticalrulersticker'></div>
                         <div id='textsticker'>
-                            <div id='head1textsticker'>Gursimranjeet Fasal Bima Yojana</div>
-                            <div id='head2textsticker'>Farmer Welfare</div>
+                            <div id='head1textsticker'>FARMER RELIEF </div>
+                            <div id='head2textsticker'>Smart Crop
+                                Insurance and Risk Solution</div>
                         </div>
                         {
                             !hideButtons && <div id="logandsign">

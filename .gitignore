@@ -8,3 +8,4 @@ hide.txt
 /byteCode.txt  
 backend
 abi*.json
+.env

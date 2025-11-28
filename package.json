@@ -4,10 +4,11 @@
   "version": "0.0.0",
   "type": "module",
   "scripts": {
-    "start": "vite",
-    "build": "vite build",
+    "start": "concurrently \"npm run vite\" \"node ./server/listen.js\" \"node ./server/server.js\"",
+    "vite": "vite --config ./myApp/vite.config.js",
+    "build": "vite build --config ./myApp/vite.config.js",
     "lint": "eslint .",
-    "preview": "vite preview"
+    "preview": "vite preview --config ./myApp/vite.config.js"
   },
   "dependencies": {
     "@fortawesome/fontawesome-svg-core": "^7.0.0",
@@ -16,7 +17,13 @@
     "@fortawesome/react-fontawesome": "^3.0.1",
     "@supabase/supabase-js": "^2.75.1",
     "axios": "^1.12.2",
+    "concurrently": "^9.2.1",
+    "cors": "^2.8.5",
+    "dotenv": "^17.2.3",
     "ethers": "^6.15.0",
+    "express": "^5.1.0",
+    "fs": "^0.0.1-security",
+    "groq-sdk": "^0.35.0",
     "react": "^19.1.1",
     "react-dom": "^19.1.1",
     "react-router-dom": "^7.9.4"
